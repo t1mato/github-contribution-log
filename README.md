@@ -1,17 +1,15 @@
-# github-contribution-log
+# Contribution 1: Burr UI Header Section
 
-# Contribution [#]: [Issue Title]
-
-**Contribution Number:** [1 / 2 / 3]  
-**Student:** [Your Name]  
-**Issue:** [GitHub issue link]  
-**Status:** [Phase I / Phase II / Phase III / Phase IV] [In Progress / Complete]
+**Contribution Number:** 1 
+**Student:** Timothy Lee  
+**Issue:** [GitHub issue link](https://github.com/apache/burr/issues/411) 
+**Status:** Phase I Complete
 
 ---
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs explaining why this issue interests you, how it matches your skills/learning goals, what you hope to learn]
+This issue interests me because it is an intersection of many things that interest me. Apache Burr is essentially a lightweight in-process Python framework that standardizes the expression and execution of state machines as action-driven graphs. It is particularly suited for AI agent workflows and the primary languages it works with are Python and TypeScript, which are the two main languages I am strongest at, but also want to improve at. Understanding AI agent workflows is also something that has been intriguing to me as I have been diving deeper into AI in general and I hope to be able to contribute and gain more insight on this project as a whole.
 
 ---
 
