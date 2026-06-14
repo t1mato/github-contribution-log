@@ -2,8 +2,8 @@
 
 **Contribution Number:** 1 
 **Student:** Timothy Lee  
-**Issue:** [GitHub issue link](https://github.com/apache/burr/issues/411) 
-**Status:** Phase I Complete
+**Issue:** [GitHub issue link](https://github.com/apache/burr/issues/411)
+**Status:** Phase II Complete
 
 ---
 
@@ -37,13 +37,27 @@ This issue interests me because it is an intersection of many things that intere
 
 ### Environment Setup
 
-[Notes on setting up your local development environment - challenges you faced, how you solved them]
+Used the project's "Quick Start" instructions for setting up the project. Finished the setup in around 5 minutes. The repository is well-maintained and are clear on instructions so there were no issues setting up.
+
+Working branch: https://github.com/t1mato/burr/tree/fix-issue-burr-ui-header
 
 ### Steps to Reproduce
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+Prerequsites: Install doc dependencies
+
+1. From the repo root:
+```
+pip install -e ".[dev]"
+pip install sphinx furo myst-nb sphinx-sitemap sphinx-toolbox
+```
+2. Build and view docs:
+```
+cd docs
+make html
+open _build/html/index.html
+```
+3. **Expected:** On the left sidebar, a Burr UI should be there to help the users find UI-related documentation. 
+4. **Actual:** There is no "Burr UI" section at the top level, and users have to dig depeer into documentation. 
 
 ### Reproduction Evidence
 
@@ -67,20 +81,23 @@ This issue interests me because it is an intersection of many things that intere
 
 Using UMPIRE framework (adapted):
 
-**Understand:** [Restate the problem]
+**Understand:** The Burr docs have no top-level "Burr UI" sidebar section, making the UI undiscoverable. UI content exists but is scattered across multiple files.
 
-**Match:** [What similar patterns/solutions exist in the codebase?]
+**Match:** Every top-level nav section in this project follows the same pattern: a directory with an `index.rst` landing page registered in `docs/index.srt` via `toctree`. The Hamilton UI screenshot demonstrates the target structure that was suggested: a top-level entry with sub-pages for Overview, Local Mode, and Production Mode.
 
-**Plan:** [Step-by-step implementation plan]
-1. [Modify file X to do Y]
-2. [Add function Z]
-3. [Update tests]
+**Plan:** 
+1. Create `docs/burr_ui/index.rst` - section landing page with a toctree listing sub-pages and a one-paragraph intro to the UI.
+2. Create `docs/burr_ui/overview.rst` - what the UI shows (projects, applications, steps), drawing from `concepts/tracking.rst` lines 36-44.
+3. Create `docs/burr_ui/local-mode.rst` - running the UI locally, pulling content from `concepts/tracking.rst` lines 100-155 (terminal command, notebook launch, FastAPI mount).
+4. Create `docs/burr_ui/production-mode.rst` - deploying in production, pulling content from `examples/deployment/monitoring.rst`.
+5. Modify `docs/index.rst` - add `burr_ui/index` to the main `toctree` after `getting_started/index`.
+6. Update `docs/concepts/tracking.rst` - add a `..seealso::` pointing to the new section so existing liinks don't become dead ends. 
 
 **Implement:** [Link to your branch/commits as you work]
 
-**Review:** [Self-review checklist - does it follow the project's contribution guidelines?]
+**Review:** All new `.rst` files need the Apache License header, no Sphinx build warnings, and content should be reorganized rather than duplicated.
 
-**Evaluate:** [How will you verify it works?]
+**Evaluate:** Run `cd docs && make html`, open `_build/html/index.html`, and confirm "Burr UI" appears as a top-levels diebar section with working sub-pages and no build warnings. 
 
 ---
 
