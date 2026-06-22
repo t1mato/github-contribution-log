@@ -184,7 +184,8 @@ Added a dedicated Burr UI section to the documentation and restructured the cont
 
 ### Challenges Overcome
 
-[What was hard and how you solved it]
+**Week 3**
+- Pretty straightforward, I think just remembering to reference image paths correctly, especially when there's a lot of subdirectories in the repository. 
 
 ### What I'd Do Differently Next Time
 
