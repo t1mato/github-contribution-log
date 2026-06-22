@@ -3,7 +3,7 @@
 **Contribution Number:** 1 
 **Student:** Timothy Lee  
 **Issue:** [GitHub issue link](https://github.com/apache/burr/issues/411)
-**Status:** Phase II Complete
+**Status:** Phase III Complete
 
 ---
 
@@ -105,9 +105,10 @@ Using UMPIRE framework (adapted):
 
 ### Unit Tests
 
-- [ ] Test case 1: [Description]
-- [ ] Test case 2: [Description]
-- [ ] Test case 3: [Description]
+- [X] Sphinx builds without warnings: Run `make html` in `docs/` and confirm no section title underline warnings or missing reference errors.
+- [X] toctree entries resolve: Verify `docs/index.rst` → `ui/index` and `ui/index` → `getting-started`, `notebook`, `deployment` all render without broken links
+- [X] Cross-reference integrity: Confirm the `.. _ui: label` on `ui/index.rst` resolves correctly for any existing `:ref:\ui` links elsewhere in the doc
+- [X] Image path resolves: Verify png in `ui/index.rst` renders correctly
 
 ### Integration Tests
 
@@ -122,9 +123,20 @@ Using UMPIRE framework (adapted):
 
 ## Implementation Notes
 
-### Week [X] Progress
+### Week 3 Progress
 
-[What you built this week, challenges faced, decisions made]
+Added a dedicated Burr UI section to the documentation and restructured the content
+  from a single monolithic docs/ui.rst into a docs/ui/ directory with focused pages:
+
+  - ui/index.rst — Overview, data model (Projects / Applications / Steps), and toctree
+  - ui/getting-started.rst — Installation, connecting an app with with_tracker, and
+  reloading prior state
+  - ui/notebook.rst — Launching the UI from Jupyter and Google Colab via %burr_ui
+  - ui/deployment.rst — Embedding in FastAPI and production backend options (local
+  filesystem vs. S3)
+
+  Updated docs/index.rst to point to the new ui/index toctree entry. PR #815 is open
+  against apache/burr main.
 
 ### Week [Y] Progress
 
@@ -132,17 +144,29 @@ Using UMPIRE framework (adapted):
 
 ### Code Changes
 
-- **Files modified:** [List]
-- **Key commits:** [Links to important commits]
+- **Files modified:**
+- docs/index.rst
+- docs/ui/index.rst
+- docs/ui/getting-started.rst
+- docs/ui/notebook.rst
+- docs/ui/deployment.rst
+  
+- **Key commits:**
+- [Commit 1](https://github.com/apache/burr/pull/815/changes/a7b475357e302cb90741712a33327832b3f8ba5f)
+- [Commit 2](https://github.com/apache/burr/pull/815/changes/81ca828b411729ddfc98de023253abf0b895067b)
+  
 - **Approach decisions:** [Why you chose certain approaches]
+- Split into a `docs/ui/` sections rather than expanding a single page. A dedicated directory with an `index.rst` toctree follows the same pattern used by other sections in the repo and makes the UI discoverable as a leading header in the sidebar
+- Separated content by use case. Each serve distinct audiences, so splitting them avoids a long scrolling page and lets users navigate directly to what they need
+- Kept the `.. _ui:` label on `ui/index.rst`, preserving any existing cross-references in the docs that point to the `:ref:\ui` target
 
 ---
 
 ## Pull Request
 
-**PR Link:** [GitHub PR URL when submitted]
+**PR Link:** https://github.com/apache/burr/pull/815
 
-**PR Description:** [Draft or final PR description - much of the content above can be adapted]
+**PR Description:** Add a dedicated docs/ui/ section covering the Burr UI from installation through notebook usage and production deployment, with focused pages for getting-started, notebook/Colab, and deployment. Update docs/index.rst to point to the new ui/index toctree entry and remove the previous single-page ui.rst.
 
 **Maintainer Feedback:**
 - [Date]: [Summary of feedback received]
