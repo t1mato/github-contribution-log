@@ -1,9 +1,13 @@
 # Contribution 1: Burr UI Header Section
+# Contribution 2: CI: release CI follow-ups: tigher coverage
 
-**Contribution Number:** 1 
+**Contribution Number:** 2 
 **Student:** Timothy Lee  
-**Issue:** [GitHub issue link](https://github.com/apache/burr/issues/411) 
-**Status:** Phase IV Complete
+**Issues:** 
+[Issue 1 (Completed)](https://github.com/apache/burr/issues/411) 
+[Issue 2 (Pending Approval)](https://github.com/apache/burr/issues/747)
+
+**Status:** Phase IV Complete (PR #2)
 
 ---
 
@@ -138,10 +142,6 @@ Added a dedicated Burr UI section to the documentation and restructured the cont
   Updated docs/index.rst to point to the new ui/index toctree entry. PR #815 is open
   against apache/burr main.
 
-### Week [Y] Progress
-
-[Continue documenting as you work]
-
 ### Code Changes
 
 - **Files modified:**
@@ -155,16 +155,65 @@ Added a dedicated Burr UI section to the documentation and restructured the cont
 - [Commit 1](https://github.com/apache/burr/pull/815/changes/a7b475357e302cb90741712a33327832b3f8ba5f)
 - [Commit 2](https://github.com/apache/burr/pull/815/changes/81ca828b411729ddfc98de023253abf0b895067b)
   
-- **Approach decisions:** [Why you chose certain approaches]
+- **Approach decisions:** 
 - Split into a `docs/ui/` sections rather than expanding a single page. A dedicated directory with an `index.rst` toctree follows the same pattern used by other sections in the repo and makes the UI discoverable as a leading header in the sidebar
 - Separated content by use case. Each serve distinct audiences, so splitting them avoids a long scrolling page and lets users navigate directly to what they need
 - Kept the `.. _ui:` label on `ui/index.rst`, preserving any existing cross-references in the docs that point to the `:ref:\ui` target
+
+### Week 5 Progress
+
+Finished a new PR and just opened it up. Waiting for review and approval.
+
+Implemented all remaining sub-items from #747, covering four areas of CI/release hardening: file/script fixes, smoke test
+reliability, CI coverage gaps, and license-header hygiene.
+
+  - Files & Scripts — Renamed examples/deep-researcher/utils.py → deep_researcher_utils.py to avoid an Apache RAT basename
+  collision with four other ASF-owned utils.py files; threaded --skip-signing through cmd_verify so CI can verify artifacts
+  without GPG keys; extended RAT scanning to .whl artifacts alongside source/sdist tarballs.
+  - Smoke Test — Replaced the hardcoded time.sleep(2) with a polling loop against /api/v0/projects that fails fast if the
+  server exits; launched the server in its own process group and sent SIGTERM to the whole group on teardown to stop
+  orphaned uvicorn processes; added a GET / check for the UI; added a --cleanup/--no-cleanup flag (auto-disabled under
+  GITHUB_ACTIONS so workspaces survive for artifact upload).
+  - CI Coverage Gaps — Added a bare-install job that installs the wheel without optional extras and imports core symbols,
+  catching leakage of optional deps into core; added an sdist-wheel-equivalence job that rebuilds the wheel from the sdist
+  and compares content hashes against the CI-built wheel; pinned the Apache RAT JAR download with a SHA256 checksum.
+  - Hygiene — Added scripts/check_asf_headers.py (checks Python/YAML/shell files for the ASF header, reading .rat-excludes
+  at runtime to stay in sync automatically) and wired it as a pre-commit hook; added a weekly Monday 09:00 UTC cron to the
+  release validation workflow to catch dependency drift between releases.
+
+  ### Code Changes
+
+  - **Files modified:**
+    - .github/workflows/release-validation.yml
+    - .pre-commit-config.yaml
+    - .rat-excludes
+    - examples/deep-researcher/application.py, examples/deep-researcher/deep_researcher_utils.py (renamed)
+    - scripts/apache_release.py, scripts/verify_apache_artifacts.py, scripts/ci_smoke_server.py
+    - scripts/check_asf_headers.py (new)
+    - tests/test_apache_release.py, tests/test_verify_apache_artifacts.py, tests/test_ci_smoke_server.py (new),
+  tests/test_check_asf_headers.py (new)
+
+  - **Key commits:**
+    - [ci: add files/scripts](https://github.com/apache/burr/pull/832/changes/49ba90090f67bacec1ebdd0bdd81db9ed94dce22)
+    - [ci: add smoke test improvements](https://github.com/apache/burr/pull/832/commits/41c866cfbea1dd9b4423fcb6ca6c0775978dbaba)
+    - [ci: add CI coverage gaps](https://github.com/apache/burr/pull/832/commits/e6bf7d74643c4dfde36c654438009dfd7fc48bbf)
+    - [ci: add hygiene improvements](https://github.com/apache/burr/pull/832/commits/0115dd093a8bc9651e72e8a7d54be386c9adeb84)
+    - 
+  - **Approach decisions:**
+  - Compared wheels by file content hashes rather than binary equality in sdist-wheel-equivalence, since zip timestamps
+  make byte-for-byte wheel comparison unreliable.
+  - Ran the smoke-test server in its own process group (start_new_session=True) so teardown can SIGTERM the whole group,
+  preventing orphaned uvicorn children — a plain proc.terminate() wouldn't reach subprocess-spawned workers.
+  - Made check_asf_headers.py read .rat-excludes at runtime instead of duplicating an exclusion list, so the two license
+  checks (RAT and the new pre-commit hook) can't drift out of sync.
+  - Kept --cleanup/--no-cleanup defaulting to cleanup locally but auto-disabling under GITHUB_ACTIONS, so CI failures
+  leave the workspace intact for artifact upload/debugging without requiring a manual flag in the workflow.
 
 ---
 
 ## Pull Request
 
-**PR Link:** https://github.com/apache/burr/pull/815
+**PR Link 1:** https://github.com/apache/burr/pull/815
 
 **PR Description:** Add a dedicated docs/ui/ section covering the Burr UI from installation through notebook usage and production deployment, with focused pages for getting-started, notebook/Colab, and deployment. Update docs/index.rst to point to the new ui/index toctree entry and remove the previous single-page ui.rst.
 
@@ -173,22 +222,46 @@ Added a dedicated Burr UI section to the documentation and restructured the cont
 
 **Status:** Approved & Merged
 
+**PR Link 2:** https://github.com/apache/burr/pull/832
+
+**PR Description:** CI issue. Add more test coverage for various implementations, including files/scripts, smoke tests, coverage gaps, and hygiene. 
+
+**Maintainer Feedback:**
+- 7/3/2026 - "Will look shortly"
+
+**Status:** Pending Approval
+
 ---
 
 ## Learnings & Reflections
+
+**Week 3**
 
 ### Technical Skills Gained
 
 [What you learned technically]
 
 ### Challenges Overcome
-
-**Week 3**
 - Pretty straightforward, I think just remembering to reference image paths correctly, especially when there's a lot of subdirectories in the repository. 
 
 ### What I'd Do Differently Next Time
 
-[Reflection on your process]
+**Week 5**
+
+### Technical Skills Gained
+- Wheel/sdist internals: Learned that .whl files are just zips with a RECORD manifest listing hashes of every other file
+- Comparing wheels built at different times requires hashing each member's content and explicitly excluding RECORD
+- Process-group signal handling in Python requires setting `start_new_session=True` on `subprocess.Popen` + `os.killpg(os.getpgid(pid), SIGTERM)` to reap an entire process tree, instead of using `proc.terminate()`, which only kills the direct child and orphans uvicorn workers
+- Supply-chain pinning practices: pinning the Apache RAT JAR download by SHA256 rather than trusting the URL at fetch time
+
+### Challenges Overcome
+- Smoke test's original `time.sleep(2)` was both slow and flaky. Replacing it with the polling solved both.
+- Understanding how wheels worked and diagnosing why two wheels built from idential sources still failed a binary diff
+
+### What I'd Do Differently Next Time
+- Add `--skip-signing` checks earlier in the release-tooling rather than as a follow-up pass
+- Write the wheel comparison test cases before the implementation
+- Possibly write smaller commits, utilizing test suites for each unique issue.
 
 ---
 
