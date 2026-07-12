@@ -4,8 +4,8 @@
 **Contribution Number:** 2 
 **Student:** Timothy Lee  
 **Issues:** 
-[Issue 1 (Completed)](https://github.com/apache/burr/issues/411) 
-[Issue 2 (Pending Approval)](https://github.com/apache/burr/issues/747)
+- [Issue 1 (Completed)](https://github.com/apache/burr/issues/411) 
+- [Issue 2 (Pending Approval)](https://github.com/apache/burr/issues/747)
 
 **Status:** Phase IV Complete (PR #2)
 
@@ -209,6 +209,9 @@ reliability, CI coverage gaps, and license-header hygiene.
   - Kept --cleanup/--no-cleanup defaulting to cleanup locally but auto-disabling under GITHUB_ACTIONS, so CI failures
   leave the workspace intact for artifact upload/debugging without requiring a manual flag in the workflow.
 
+### Week 6 Progress
+PR was approved and merged! A maintainer just left some comments and they suggested that I run some local tests to double-check some changes. Will do that and then go ahead and look for a third PR to work on.
+
 ---
 
 ## Pull Request
@@ -228,8 +231,9 @@ reliability, CI coverage gaps, and license-header hygiene.
 
 **Maintainer Feedback:**
 - 7/3/2026 - "Will look shortly"
+- 7/10/2026 - Asking for a few local tests to double-check, almost all changes look approved and it was merged!
 
-**Status:** Pending Approval
+**Status:** Approved & Merged
 
 ---
 
@@ -262,6 +266,10 @@ reliability, CI coverage gaps, and license-header hygiene.
 - Add `--skip-signing` checks earlier in the release-tooling rather than as a follow-up pass
 - Write the wheel comparison test cases before the implementation
 - Possibly write smaller commits, utilizing test suites for each unique issue.
+
+**Week 6**
+- Just waiting for PR to approve merges, need to take a look over some comments and local tests that were suggested
+- Once I finish the last few changes, I will get started on my third PR!
 
 ---
 
