@@ -1,5 +1,6 @@
 # Contribution 1: Burr UI Header Section
 # Contribution 2: CI: release CI follow-ups: tigher coverage
+# Contribution 3: In Progress
 
 **Contribution Number:** 2 
 **Student:** Timothy Lee  
@@ -7,7 +8,7 @@
 - [Issue 1 (Completed)](https://github.com/apache/burr/issues/411) 
 - [Issue 2 (Pending Approval)](https://github.com/apache/burr/issues/747)
 
-**Status:** Phase IV Complete (PR #2)
+**Status:** Starting Phase I (PR #3)
 
 ---
 
@@ -212,6 +213,9 @@ reliability, CI coverage gaps, and license-header hygiene.
 ### Week 6 Progress
 PR was approved and merged! A maintainer just left some comments and they suggested that I run some local tests to double-check some changes. Will do that and then go ahead and look for a third PR to work on.
 
+### Week 7 Progress
+Looks like testing wasn't needed and I have begun the process of looking for my third issue to work on. Still in contact with the maintainers to ensure that my second issue is fully completed, lack of responses.
+
 ---
 
 ## Pull Request
@@ -270,6 +274,11 @@ PR was approved and merged! A maintainer just left some comments and they sugges
 **Week 6**
 - Just waiting for PR to approve merges, need to take a look over some comments and local tests that were suggested
 - Once I finish the last few changes, I will get started on my third PR!
+
+**Week 7**
+- Double checking and following up with maintainers to ensure that all code is completed thoroughly and correctly
+- Waiting for responses tends to take a while, maintainers are busy with other jobs
+- Looking for third issue to work on in the meantime
 
 ---
 
