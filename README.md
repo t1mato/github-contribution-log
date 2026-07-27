@@ -2,11 +2,11 @@
 # Contribution 2: CI: release CI follow-ups: tigher coverage
 # Contribution 3: In Progress
 
-**Contribution Number:** 2 
+**Contribution Number:** 3 
 **Student:** Timothy Lee  
 **Issues:** 
 - [Issue 1 (Completed)](https://github.com/apache/burr/issues/411) 
-- [Issue 2 (Pending Approval)](https://github.com/apache/burr/issues/747)
+- [Issue 2 (Completed)](https://github.com/apache/burr/issues/747)
 
 **Status:** Starting Phase I (PR #3)
 
@@ -279,6 +279,9 @@ Looks like testing wasn't needed and I have begun the process of looking for my 
 - Double checking and following up with maintainers to ensure that all code is completed thoroughly and correctly
 - Waiting for responses tends to take a while, maintainers are busy with other jobs
 - Looking for third issue to work on in the meantime
+
+**Week 8**
+- Still looking for issues to work on, will have one finalized by tomorrow and will start working on it tomorrow as well
 
 ---
 
