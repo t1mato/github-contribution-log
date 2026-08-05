@@ -283,6 +283,10 @@ Looks like testing wasn't needed and I have begun the process of looking for my 
 **Week 8**
 - Still looking for issues to work on, will have one finalized by tomorrow and will start working on it tomorrow as well
 
+**Week 9** 
+- Looked into a couple of new issues, but they have a lot of learning pre-requisites. Have been trying to read up on some docs to better gauge what I'm working with before I pick up an issue that I want to fully commit to.
+- Looked into [Apache Airflow](https://github.com/apache/airflow/issues), a data orchestration tool used by many data engineers
+
 ---
 
 ## Resources Used
