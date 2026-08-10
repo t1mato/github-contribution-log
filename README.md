@@ -1,14 +1,15 @@
 # Contribution 1: Burr UI Header Section
-# Contribution 2: CI: release CI follow-ups: tigher coverage
-# Contribution 3: In Progress
+# Contribution 2: CI: release CI follow-ups: tighter coverage
+# Contribution 3: Multiple executors does not work when Airflow is deployed in kubernetes
 
 **Contribution Number:** 3 
 **Student:** Timothy Lee  
 **Issues:** 
 - [Issue 1 (Completed)](https://github.com/apache/burr/issues/411) 
 - [Issue 2 (Completed)](https://github.com/apache/burr/issues/747)
+- [Issue 3 (In Progress)](https://github.com/apache/airflow/issues/71175) 
 
-**Status:** Starting Phase I (PR #3)
+**Status:** Phase I Complete (PR #3)
 
 ---
 
@@ -286,6 +287,10 @@ Looks like testing wasn't needed and I have begun the process of looking for my 
 **Week 9** 
 - Looked into a couple of new issues, but they have a lot of learning pre-requisites. Have been trying to read up on some docs to better gauge what I'm working with before I pick up an issue that I want to fully commit to.
 - Looked into [Apache Airflow](https://github.com/apache/airflow/issues), a data orchestration tool used by many data engineers
+
+**Week 10**
+- Picked up an issue that deals with the Helm chart section of Apache Airflow
+- Will look to reproduce locally and then work on it
 
 ---
 
